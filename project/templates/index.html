@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>DailyEdge-Super9 App</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+ 
+ 
+  <section class="intro-section-wrapper" style="background-image: url('static/background.jfif');">
+    <div class="intro-section">
+      <div class="intro-box left-box">
+        <video controls autoplay muted loop>
+          <source src="{{ url_for('static', filename='Projectadvideo.mp4') }}" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <div class="intro-box right-box">
+        <img src="{{ url_for('static', filename='logo.png') }}" alt="App Logo">
+        <h1 style="font-size: 1.75em;">DailyEdge-Super9</h1>
+        <p class="tagline" style="font-size: 1.5em;"><strong>Smart Tools for Students & Professionals</strong></p>
+      </div>
+    </div>
+  </section>
+  
+  
+  
+  
+  <!-- Feature Cards -->
+  <section class="features">
+    <h2 class="section-title">Our Features</h2>
+    <div class="feature-container" style="background-image: url('static/background.jfif');">
+      <div class="feature-wrapper">
+        <h2>QR Code Generator</h2>
+        <div class="feature-card" style="background-image: url('static/qrbg.jpg');">
+
+          <form method="POST" action="/generate_qr">
+            <input name="qr_data" placeholder="Enter text or URL">
+            <button type="submit">Generate</button>
+          </form>
+        </div>
+      </div>
+      <div class="feature-wrapper">
+        <h2>URL Shortener</h2>
+        <div class="feature-card" style="background-image: url('static/urlbg.jfif');">
+
+          <form method="POST" action="/shorten_url">
+            <input name="long_url" placeholder="Enter long URL">
+            <button type="submit">Shorten</button>
+          </form>
+        </div>
+      </div>
+      <div class="feature-wrapper">
+        <h2>Merge PDFs</h2>
+        <div class="feature-card" style="background-image: url('static/mergebg.png');height: 310px; width: 300px;">
+
+          <form method="POST" action="/merge_pdfs" enctype="multipart/form-data">
+            <input type="file" name="pdfs" multiple>
+            <button type="submit">Merge</button>
+          </form>
+        </div>
+      </div>
+      <div class="feature-wrapper">
+        <h2>Resize Image</h2>
+        <div class="feature-card" style="background-image: url('static/resizeimg.png');">
+
+          <form method="POST" action="/resize_image" enctype="multipart/form-data">
+            <input type="file" name="image">
+            <input name="scale" placeholder="Scale (e.g., 2 for half size)">
+            <button type="submit">Resize</button>
+          </form>
+        </div>
+      </div>
+      <div class="feature-wrapper">
+        <h2>Compress PDF</h2>
+        <div class="feature-card" style="background-image: url('static/compressbg.png');">
+
+          <form method="POST" action="/compress_pdf" enctype="multipart/form-data">
+            <input type="file" name="pdf">
+            <button type="submit">Compress</button>
+          </form>
+        </div>
+      </div>
+      <div class="feature-wrapper">
+        <h2>PDF to Word</h2>
+        <div class="feature-card" style="background-image: url('static/pdftoword.jpg');">
+
+          <form method="POST" action="/pdf_to_word" enctype="multipart/form-data">
+            <input type="file" name="pdf_file">
+            <button type="submit">Convert</button>
+          </form>
+        </div>
+      </div>
+      <div class="feature-wrapper">
+        <h2>Word to PDF</h2>
+        <div class="feature-card" style="background-image: url('static/wordtopdf.png');">
+
+          <form method="POST" action="/word_to_pdf" enctype="multipart/form-data">
+            <input type="file" name="docx_file">
+            <button type="submit">Convert</button>
+          </form>
+        </div>
+      </div>
+      <div class="feature-wrapper">
+        <h2>Task Reminder</h2>
+        <div class="feature-card" style="background-image: url('static/Taskbg.jpg');">
+
+          <form method="POST" action="/set_reminder">
+            <input type="email" name="email" placeholder="Enter your email" required><br>
+            <input type="text" name="task" placeholder="Enter task name" required><br>
+            <label>Reminder Time:</label><br>
+            <input type="datetime-local" name="reminder_time" required><br>
+            <button type="submit">Set Reminder</button>
+          </form>
+        </div>
+      </div>
+      <div class="feature-wrapper">
+        <h2>LinkedIn Post Generator</h2>
+        <div class="feature-card" style="background-image: url('static/Linkedinbg.png');">
+
+          <form action="/generate_linkedin_post" method="post">
+            <input type="text" name="post_topic" placeholder="Enter topic" required>
+            <select name="tone">
+              <option value="professional">Professional</option>
+              <option value="casual">Casual</option>
+              <option value="motivational">Motivational</option>
+              <option value="inspirational">Inspirational</option>
+              <option value="educational">Educational</option>
+            </select>
+            <select name="length">
+              <option value="short">Short</option>
+              <option value="medium" selected>Medium</option>
+              <option value="long">Long</option>
+            </select><br>
+            <input type="checkbox" name="use_emojis"> Include Emojis & Symbols<br>
+            <button type="submit">Generate</button>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- About Us Section -->
+  
+
+</body>
+<footer style="background-color: #111; color: #ccc; text-align: center; padding: 30px 10px; margin-top: 40px; border-top: 2px solid limegreen;">
+  <p style="font-size: 1.1em;">&copy; 2025 <strong>DailyEdge-Super9</strong>. All rights reserved.</p>
+  <p>Smart Tools for Students & Professionals | Built with ❤️ using Flask</p>
+  <p>Developed by <strong>Choudhury Amlan Dash</strong></p>
+</footer>
+
+</html>
