@@ -66,13 +66,13 @@
         </div>
       </div>
       <div class="feature-wrapper">
-        <h2>Resize Image</h2>
-        <div class="feature-card" style="background-image: url('static/resizeimg.png');">
+        <h2>Image to PDF</h2>
+        <div class="feature-card" style="background-image: url('static/imgtopdf.png');">
 
-          <form method="POST" action="/resize_image" enctype="multipart/form-data">
-            <input type="file" name="image">
-            <input name="scale" placeholder="Scale (e.g., 2 for half size)">
-            <button type="submit">Resize</button>
+          <form method="POST" action="/image_to_pdf" enctype="multipart/form-data">
+            <input type="file" name="image" accept="image/*" required>
+            
+            <button type="submit">Convert</button>
           </form>
         </div>
       </div>
