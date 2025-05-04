@@ -58,18 +58,24 @@ def merge_pdfs():
     merger.close()
     return send_file(output_path, as_attachment=True)
 
-@app.route('/resize_image', methods=['POST'])
-def resize_image():
+@app.route('/image_to_pdf', methods=['POST'])
+def image_to_pdf():
+    from PIL import Image  # Import locally to ensure Pillow is used here
+
     img_file = request.files['image']
-    scale = float(request.form['scale'])
-    path = os.path.join(UPLOAD_FOLDER, secure_filename(img_file.filename))
-    img_file.save(path)
-    img = cv2.imread(path)
-    width = int(img.shape[1] / scale)
-    height = int(img.shape[0] / scale)
-    resized = cv2.resize(img, (width, height), interpolation=cv2.INTER_AREA)
-    output_path = os.path.join(STATIC_FOLDER, 'resized.jpg')
-    cv2.imwrite(output_path, resized)
+    filename = secure_filename(img_file.filename)
+    input_path = os.path.join(UPLOAD_FOLDER, filename)
+    output_path = os.path.join(STATIC_FOLDER, 'converted.pdf')
+
+    # Save uploaded image
+    img_file.save(input_path)
+
+    # Convert image to RGB and save as PDF
+    with Image.open(input_path) as img:
+        if img.mode in ("RGBA", "P"):
+            img = img.convert("RGB")
+        img.save(output_path, "PDF", resolution=100.0)
+
     return send_file(output_path, as_attachment=True)
 
 @app.route('/compress_pdf', methods=['POST'])
