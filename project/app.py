@@ -156,7 +156,7 @@ def set_reminder():
 import groq  # Groq's Python SDK
 
 # Set your Groq API key (you fill this part in)
-groq.api_key = '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'
+groq.api_key = ''
 
 
 @app.route('/generate_linkedin_post', methods=['POST'])
